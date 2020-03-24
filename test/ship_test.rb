@@ -24,5 +24,9 @@ class ShipTest < Minitest::Test
     assert_equal 3, @cruiser.health
   end
 
+  def test_sunk_status
+    assert_equal false, @cruiser.sunk?
+  end
+
 
 end
