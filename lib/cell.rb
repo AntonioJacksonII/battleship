@@ -10,6 +10,22 @@ class Cell
 
   end
 
+  def empty?
+      if cells = []
+        true
+      else
+        false
+      end
+end
 
+  def place_ship(ship)
+    cells =
+    # [cell instances]
+    ship = cells
+  end
+
+  def fired_upon?
+    false
+  end
 
 end
