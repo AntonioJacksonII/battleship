@@ -19,9 +19,7 @@ class Cell
 end
 
   def place_ship(ship)
-    cells =
-    # [cell instances]
-    ship = cells
+    cells << []
   end
 
   def fired_upon?

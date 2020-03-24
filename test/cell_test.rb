@@ -16,5 +16,18 @@ class CellTest < Minitest::Test
       assert_equal "B4", cell.coordinates
   end
 
+  def test_empty?
+      cell = Cell.new(coordinates: 'B4')
+      require 'pry'; binding.pry
+      assert_equal true, cell.empty?
+  end
+
+  def test_fired_upon?
+    cell = Cell.new(coordinates: 'B4')
+    require 'pry'; binding.pry
+    assert_equal false, ship.fired_upon?
+
+
+
 
 end
