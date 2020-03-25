@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-#require './lib/ship'
+require './lib/ship'
 require './lib/cell'
 
 class CellTest < Minitest::Test
@@ -22,12 +22,21 @@ class CellTest < Minitest::Test
       assert_equal true, cell.empty?
   end
 
-  def test_fired_upon?
+  #def test_fired_upon?
+  #  cell = Cell.new(coordinates: 'B4')
+  #  require 'pry'; binding.pry
+  #  assert_equal false, ship.fired_upon?
+  #end
+
+  def test_place_ship
+    cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new(coordinates: 'B4')
     require 'pry'; binding.pry
-    assert_equal false, ship.fired_upon?
-  end
 
+    cell.place_ship(cruiser)
+    assert_equal false, cell.empty?
+    assert_equal [cruiser], cell.ship
+  end
 
 
 end

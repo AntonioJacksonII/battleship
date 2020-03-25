@@ -18,4 +18,9 @@ class Cell
     end
   end
 
+  def place_ship(name)
+    @ship_cell.push(name)
+  end
+
+
 end
