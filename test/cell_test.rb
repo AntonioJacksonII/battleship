@@ -26,7 +26,7 @@ class CellTest < Minitest::Test
     cell = Cell.new(coordinates: 'B4')
     require 'pry'; binding.pry
     assert_equal false, ship.fired_upon?
-
+  end
 
 
 
