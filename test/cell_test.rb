@@ -22,11 +22,6 @@ class CellTest < Minitest::Test
       assert_equal true, cell.empty?
   end
 
-  #def test_fired_upon?
-  #  cell = Cell.new(coordinates: 'B4')
-  #  require 'pry'; binding.pry
-  #  assert_equal false, ship.fired_upon?
-  #end
 
   def test_place_ship
     cruiser = Ship.new("Cruiser", 3)
