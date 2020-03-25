@@ -1,29 +1,7 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-#require './lib/ship'
-
 class Cell
-  attr_reader :coordinates
+  attr_reader :coordinates, :ship_cell
 
   def initialize(location)
     @coordinates = location[:coordinates]
-
+    @ship_cell = []
   end
-
-  def empty?
-      if cells = []
-        true
-      else
-        false
-      end
-end
-
-  def place_ship(ship)
-    cells << []
-  end
-
-  def fired_upon?
-    false
-  end
-
-end
