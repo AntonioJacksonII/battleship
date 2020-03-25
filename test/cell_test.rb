@@ -25,10 +25,10 @@ class CellTest < Minitest::Test
   def test_place_ship
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new('B4')
-    
+
     cell.place_ship(cruiser)
     assert_equal false, cell.empty?
-    assert_equal [cruiser], cell.ship
+    assert_equal cruiser, cell.ship
   end
 
 

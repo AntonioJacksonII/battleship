@@ -3,7 +3,7 @@ class Cell
 
   def initialize(coordinate)
     @coordinate = coordinate
-    @ship_cell = []
+    @ship_cell = nil
   end
 
   def ship
@@ -11,11 +11,11 @@ class Cell
   end
 
   def empty?
-     @ship_cell == []
+     @ship_cell == nil
   end
 
   def place_ship(name)
-    @ship_cell.push(name)
+    @ship_cell = (name)
   end
 
 end
