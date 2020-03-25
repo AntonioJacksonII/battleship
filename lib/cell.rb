@@ -26,6 +26,7 @@ class Cell
 
   def fire_upon
     @fired_upon = true
+    @ship_cell.health -= 1
   end
 
 end
