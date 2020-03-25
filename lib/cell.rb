@@ -1,8 +1,8 @@
 class Cell
-  attr_reader :coordinates, :ship_cell
+  attr_reader :coordinate, :ship_cell
 
-  def initialize(location)
-    @coordinates = location[:coordinates]
+  def initialize(coordinate)
+    @coordinate = coordinate
     @ship_cell = []
   end
 
@@ -21,5 +21,5 @@ class Cell
   def place_ship(name)
     @ship_cell.push(name)
   end
-  
+
 end
