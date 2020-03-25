@@ -11,11 +11,7 @@ class Cell
   end
 
   def empty?
-    if @ship_cell == []
-      true
-    else
-      false
-    end
+     @ship_cell == []
   end
 
   def place_ship(name)
