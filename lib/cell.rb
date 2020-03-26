@@ -1,3 +1,6 @@
+require './lib/ship'
+
+
 class Cell
   attr_reader :coordinate, :ship_cell
   attr_accessor :fired_upon
@@ -26,7 +29,19 @@ class Cell
 
   def fire_upon
     @fired_upon = true
-    @ship_cell.health -= 1
+      if @ship_cell != nil
+          @ship_cell.health -= 1
+      end
+  end
+
+  def render
+    if :ship_cell && (@fired_upon == true)
+      "M"
+    elsif  (@ship_sell != nil) && @fired_upon
+      "H"
+    else
+      "."
+    end
   end
 
 end
