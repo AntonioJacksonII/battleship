@@ -35,10 +35,12 @@ class Cell
   end
 
   def render
-    if :ship_cell && (@fired_upon == true)
-      "M"
-    elsif  (@ship_sell != nil) && @fired_upon
+    if (@ship_cell != nil) && (@fired_upon == true)
       "H"
+    elsif  :ship_cell && (@fired_upon == true)
+      "M"
+    elsif (@health == 0)
+      "X"
     else
       "."
     end
