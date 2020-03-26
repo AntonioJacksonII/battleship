@@ -77,7 +77,9 @@ binding.pry
     cell_2.fire_upon
     cell_2.render
     assert_equal "H", cell_2.render
-    assert_equal 2, cruiser.health
+    assert_equal false, cruiser.sunk?
+
+
 
   end
 
