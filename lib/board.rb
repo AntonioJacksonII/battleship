@@ -43,13 +43,13 @@ class Board
     split_coordinates = coordinates.map do |coordinate|
       coordinate.split("")
     end
-      if split_coordinates.all?{ |coordinates| coordinates[0] == split_coordinates[0][0]}
-        split_coordinates.each_cons(2).all? { |x,y| y[1].to_i == x[1].to_i + 1 }
-      elsif split_coordinates.all?{ |coordinates| coordinates[1] == split_coordinates[0][1]}
-        split_coordinates.each_cons(2).all? { |x,y| y[0].bytes[0] == x[0].bytes[0] + 1 }
-      else
+    if split_coordinates.all?{ |coordinates| coordinates[0] == split_coordinates[0][0]}
+      split_coordinates.each_cons(2).all? { |x,y| y[1].to_i == x[1].to_i + 1 }
+    elsif split_coordinates.all?{ |coordinates| coordinates[1] == split_coordinates[0][1]}
+      split_coordinates.each_cons(2).all? { |x,y| y[0].ord == x[0].ord + 1 }
+    else
         false
-      end
+    end
   end
 
 end
