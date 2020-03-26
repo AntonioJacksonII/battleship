@@ -1,9 +1,7 @@
-require './lib/ship'
-
+require 'pry'
 
 class Cell
   attr_reader :coordinate, :ship_cell
-  attr_accessor :fired_upon
 
   def initialize(coordinate)
     @coordinate = coordinate
@@ -30,20 +28,19 @@ class Cell
   def fire_upon
     @fired_upon = true
       if @ship_cell != nil
-          @ship_cell.health -= 1
+          @ship_cell.hit
       end
   end
 
   def render
-    if (@ship_cell != nil) && (@fired_upon == true)
-      "H"
-    elsif  :ship_cell && (@fired_upon == true)
-      "M"
-    elsif (@health == 0)
+    if !empty? && (@ship_cell.health == 0)
       "X"
+    elsif !empty? && (@fired_upon == true)
+      "H"
+    elsif  empty? && (@fired_upon == true)
+      "M"
     else
       "."
     end
   end
-
 end

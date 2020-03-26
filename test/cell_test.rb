@@ -69,21 +69,20 @@ class CellTest < Minitest::Test
   def test_ship_has_sunk
     cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
-binding.pry
+
     cell_2.place_ship(cruiser)
     cell_2.render
     assert_equal ".", cell_2.render
-binding.pry
+
     cell_2.fire_upon
     cell_2.render
     assert_equal "H", cell_2.render
     assert_equal false, cruiser.sunk?
 
-
+    cruiser.hit
+    cruiser.hit
+    assert_equal true, cruiser.sunk?
+    assert_equal "X", cell_2.render
 
   end
-
-
-
-
 end
