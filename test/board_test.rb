@@ -30,9 +30,18 @@ class BoardTest < Minitest::Test
     assert_equal false, @board.valid_coordinate?('A22')
   end
 
-  def test_valid_placement?
+  def test_coordinates_match_ship_length?
     assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2"])
     assert_equal false, @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
+    assert_equal true, @board.valid_placement?(@cruiser, ['A1', 'A2', 'A3'])
+    assert_equal true, @board.valid_placement?(@submarine, ['A1', 'A2'])
+  end
+
+  def test_coordinates_are_consecutive?
+    assert_equal false, @board.coordinates_are_consecutive?(["A1", "A2", "A4"])
+    assert_equal false, @board.coordinates_are_consecutive?(["A1", "C1"])
+    assert_equal false, @board.coordinates_are_consecutive?(["A3", "A2", "A1"])
+    assert_equal false, @board.coordinates_are_consecutive?(["C1", "B1"])
   end
 
 end
