@@ -1,4 +1,5 @@
 require './lib/cell'
+require './lib/ship'
 
 class Board
 
@@ -51,5 +52,15 @@ class Board
         false
     end
   end
+
+  def place(ship, cells)
+    cells.each do
+      |cell| @cells[cell].place_ship(ship)
+    end
+  end
+
+
+
+
 
 end
