@@ -1,4 +1,5 @@
 require './lib/cell'
+require './lib/ship'
 
 class Board
 
@@ -28,11 +29,15 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    if coordinates_match_ship_length?(ship, coordinates)
-      coordinates_are_consecutive?(coordinates)
-    else
-      false
-    end
+    no_ship_overlap(coordinates) &&
+    coordinates_match_ship_length?(ship, coordinates) &&
+    coordinates_are_consecutive?(coordinates)
+  end
+
+  def no_ship_overlap(coordinates)
+    coordinates.map do |coordinate|
+    @cells[coordinate].ship == nil
+    end.all?
   end
 
   def coordinates_match_ship_length?(ship, coordinates)
@@ -51,5 +56,15 @@ class Board
         false
     end
   end
+
+  def place(ship, cells)
+    cells.each do
+      |cell| @cells[cell].place_ship(ship)
+    end
+  end
+
+
+
+
 
 end
