@@ -4,23 +4,55 @@ require './lib/ship'
 class Play
 
   def computer_ship_placement
-    @board = Board.new
-    computer_cruiser = Ship.new("Computer Cruiser", 3)
-    computer_sub = Ship.new("Computer Submarine", 2)
+    @computer_board = Board.new
+    computer_cruiser = Ship.new("Cruiser", 3)
+    computer_sub = Ship.new("Submarine", 2)
     place_ship(computer_cruiser)
     place_ship(computer_sub)
-    require "pry"; binding.pry
   end
 
   def place_ship(ship)
     placement = []
-    until @board.valid_placement?(ship, placement) do
-      placement = @board.cells.keys.sample(ship.length)
+    until @computer_board.valid_placement?(ship, placement) do
+      placement = @computer_board.cells.keys.sample(ship.length)
     end
-    @board.place(ship, placement)
+    @computer_board.place(ship, placement)
   end
 
+  def player_instructions
+    @player_board = Board.new
+    p 'I have laid out my ships on the grid.'
+    p 'You now need to lay out your two ships.'
+    p 'The Cruiser is three units long and the Submarine is two units long.'
+    print @player_board.render
+    p 'Enter the squares for the Cruiser (3 spaces):  '
+    input_coordinates = gets.chomp.split(" ")
+    place_player_cruiser(input_coordinates)
+    p 'Enter the squares for the Submarine (2 spaces): '
+    input_coordinates = gets.chomp.split(" ")
+    place_player_submarine(input_coordinates)
+  end
+
+  def place_player_cruiser(coordinates)
+    player_cruiser = Ship.new("Cruiser", 3)
+    until @player_board.valid_placement?(player_cruiser, coordinates) do
+      p 'Those are invalid coordinates. Please try again: '
+      coordinates = gets.chomp.split(" ")
+    end
+    @player_board.place(player_cruiser, coordinates)
+  end
+
+  def place_player_submarine(coordinates)
+    player_submarine = Ship.new("Submarine", 2)
+    until @player_board.valid_placement?(player_submarine, coordinates) do
+      p 'Those are invalid coordinates. Please try again: '
+      coordinates = gets.chomp.split(" ")
+    end
+    @player_board.place(player_submarine, coordinates)
+  end
 
 end
 
-Play.new.computer_ship_placement
+@play = Play.new
+@play.computer_ship_placement
+@play.player_instructions
