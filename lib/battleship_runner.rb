@@ -12,9 +12,9 @@ if start == 'p'
   print turn.display_both_boards
   turn.get_player_shot
   turn.validate_player_shot
-  p turn.take_player_shot
   turn.get_computer_shot
-  turn.take_computer_shot
+  p turn.take_player_shot
+  p turn.take_computer_shot
 elsif start == 'q'
   p 'You have quit the game'
 else
