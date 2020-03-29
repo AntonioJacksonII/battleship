@@ -26,6 +26,10 @@ class Turn
   def get_player_shot
     print "Enter the coordinate for your shot: "
     @player_shot = gets.chomp
+    until @setup.computer_board.cells[@player_shot].fired_upon? == false
+      print "You already fired on #{@player_shot}. Please enter a coordinate you have not fired on: "
+      @player_shot = gets.chomp
+    end
   end
 
   def validate_player_shot
@@ -58,13 +62,13 @@ class Turn
   def take_computer_shot
     if @setup.player_board.cells[@computer_shot].ship == nil
       @setup.player_board.cells[@computer_shot].fire_upon
-      "Your shot on #{@computer_shot} was a miss."
+      "My shot on #{@computer_shot} was a miss."
     elsif @setup.player_board.cells[@computer_shot].ship.health == 1
       @setup.player_board.cells[@computer_shot].fire_upon
-      "Your shot on #{@computer_shot} sunk the #{@setup.player_board.cells[@computer_shot].ship.name}."
+      "My shot on #{@computer_shot} sunk the #{@setup.player_board.cells[@computer_shot].ship.name}."
     else
       @setup.player_board.cells[@computer_shot].fire_upon
-      "Your shot on #{@computer_shot} hit the #{@setup.player_board.cells[@computer_shot].ship.name}."
+      "My shot on #{@computer_shot} hit the #{@setup.player_board.cells[@computer_shot].ship.name}."
     end
   end
 

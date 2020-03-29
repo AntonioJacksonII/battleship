@@ -42,8 +42,9 @@ class TurnTest < Minitest::Test
     turn.setup_game
 
     assert_nil turn.player_shot
+    turn.get_player_shot
     #Enter 'A1' when prompted for a shot
-    assert_equal "A1", turn.get_player_shot
+    assert_equal "A1", turn.player_shot
     assert turn.player_shot
   end
 
@@ -101,6 +102,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new
     turn.setup_game
     turn.get_computer_shot
+    turn.take_computer_shot
 
     assert_equal true, turn.setup.player_board.cells[turn.computer_shot].fired_upon?
   end
