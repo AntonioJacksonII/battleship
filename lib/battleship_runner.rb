@@ -18,16 +18,5 @@ def main_menu
     p "You did not enter 'p' or 'q'. Please try again."
   end
 end
-main_menu
 
-# main_menu
-# if @start == 'p'
-#   turn = Turn.new
-#   turn.setup_game
-#   p turn.determine_winner
-#   main_menu
-# elsif @start == 'q'
-#   p 'You have quit the game'
-# else
-#   p "You did not enter 'p' or 'q'. Please try again."
-# end
+main_menu
