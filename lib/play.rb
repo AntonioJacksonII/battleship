@@ -1,23 +1,12 @@
 require './lib/board'
 require './lib/ship'
-require './lib/cell'
-require './lib/battleship_runner'
 
 class Play
 
-@board = Board.new
-
   def computer_ship_placement
-<<<<<<< HEAD
-
-    computer_cruiser = Ship.new("Computer Cruiser", 3)
-    computer_sub = Ship.new("Computer Submarine", 2)
-
-=======
     @computer_board = Board.new
     computer_cruiser = Ship.new("Cruiser", 3)
     computer_sub = Ship.new("Submarine", 2)
->>>>>>> 7a0a5b5cf7a571c95b5ff457e050322c983e73c5
     place_ship(computer_cruiser)
     place_ship(computer_sub)
   end
@@ -30,35 +19,6 @@ class Play
     @computer_board.place(ship, placement)
   end
 
-<<<<<<< HEAD
-  p "I have laid out my ships on the grid."
-  p "You now need to lay out your two ships."
-  p "The Cruiser is three units long and the Submarine is two units long."
-  p @board
-
-  def player_ship_placement
-    #require "pry"; binding.pry
-    #p "I have laid out my ships on the grid."
-    #p "You now need to lay out your two ships."
-    #p "The Cruiser is three units long and the Submarine is two units long."
-
-     if @board.valid_placement?(@cruiser, gets.chomp)
-      ship_input = @board.cells.keys.sample(ship.length)
-    elsif @board.valid_placement?(@submarine, gets.chomp)
-      ship_input = @board.cells.keys.sample(ship.length)
-  end
-
-#gets.chomp.player_ship_placement
-
-    end
-
-
-print @board.render
-
-end
-
-#Play.new.player_ship_placement
-=======
   def player_instructions
     @player_board = Board.new
     p 'I have laid out my ships on the grid.'
@@ -96,4 +56,3 @@ end
 @play = Play.new
 @play.computer_ship_placement
 @play.player_instructions
->>>>>>> 7a0a5b5cf7a571c95b5ff457e050322c983e73c5
