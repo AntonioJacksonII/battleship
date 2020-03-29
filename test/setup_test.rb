@@ -19,35 +19,35 @@ class SetupTest < Minitest::Test
     assert_equal 5, (setup.computer_board.cells.select{ |key, value| value.ship_cell != nil}.length)
   end
 
-  def test_place_ship_computer_cruiser
+  def test_place_computer_ship_cruiser
     setup = Setup.new
     setup.computer_ship_placement
     computer_cruiser = Ship.new("Cruiser", 3)
 
-    assert_equal 3, setup.place_ship(computer_cruiser).length
-    assert_equal computer_cruiser, setup.computer_board.cells[setup.place_ship(computer_cruiser)[0]].ship
+    assert_equal 3, setup.place_computer_ship(computer_cruiser).length
+    assert_equal computer_cruiser, setup.computer_board.cells[setup.place_computer_ship(computer_cruiser)[0]].ship
   end
 
-  def test_place_ship_computer_sub
+  def test_place_computer_ship_computer_sub
     setup = Setup.new
     setup.computer_ship_placement
     computer_sub = Ship.new("Submarine", 2)
 
-    assert_equal 2, setup.place_ship(computer_sub).length
-    assert_equal computer_sub, setup.computer_board.cells[setup.place_ship(computer_sub)[0]].ship
-    assert_equal computer_sub, setup.computer_board.cells[setup.place_ship(computer_sub)[1]].ship
+    assert_equal 2, setup.place_computer_ship(computer_sub).length
+    assert_equal computer_sub, setup.computer_board.cells[setup.place_computer_ship(computer_sub)[0]].ship
+    assert_equal computer_sub, setup.computer_board.cells[setup.place_computer_ship(computer_sub)[1]].ship
   end
 
-  def test_player_instructions
+  def test_player_ship_placement
     setup = Setup.new
-    setup.player_instructions
+    setup.player_ship_placement
 
     assert_equal 5, (setup.player_board.cells.select{ |key, value| value.ship_cell != nil}.length)
   end
 
   def test_place_player_cruiser
     setup = Setup.new
-    setup.player_instructions
+    setup.player_ship_placement
     setup.place_player_cruiser(["A1", "A2", "A3"])
 
     refute nil, setup.player_board.cells["A1"].ship
@@ -61,7 +61,7 @@ class SetupTest < Minitest::Test
 
   def test_place_player_submarine
     setup = Setup.new
-    setup.player_instructions
+    setup.player_ship_placement
     setup.place_player_submarine(["A1", "A2"])
 
     refute nil, setup.player_board.cells["A1"].ship
