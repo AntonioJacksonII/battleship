@@ -1,10 +1,15 @@
+require './lib/play'
+
 p 'Welcome to BATTLESHIP'
 p 'Enter p to play. Enter q to quit.'
 
 start = gets.chomp
 
 if start == 'p'
-  Play.new.computer_ship_placement
+  turn = Turn.new
+  turn.setup_game
+  print turn.display_computer_board
+  print turn.display_player_board
 elsif start == 'q'
   p 'You have quit the game'
 else
