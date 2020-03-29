@@ -21,6 +21,7 @@ class TurnTest < Minitest::Test
     turn = Turn.new
     turn.setup_game
 
+    assert_equal turn.setup.player_board.render(true), turn.display_player_board
   end
 
 

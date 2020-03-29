@@ -9,6 +9,7 @@ if start == 'p'
   turn = Turn.new
   turn.setup_game
   print turn.display_computer_board
+  print turn.display_player_board
 elsif start == 'q'
   p 'You have quit the game'
 else

@@ -11,4 +11,8 @@ class Turn
   def display_computer_board
     @setup.computer_board.render
   end
+
+  def display_player_board
+    @setup.player_board.render(true)
+  end
 end
