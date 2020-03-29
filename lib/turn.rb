@@ -45,7 +45,13 @@ class Turn
   def take_player_shot
     if @setup.computer_board.cells[@player_shot].ship == nil
       @setup.computer_board.cells[@player_shot].fire_upon
-      print "Your shot on #{@player_shot} was a miss."
+      "Your shot on #{@player_shot} was a miss."
+    elsif @setup.computer_board.cells[@player_shot].ship.health == 1
+      @setup.computer_board.cells[@player_shot].fire_upon
+      "Your shot on #{@player_shot} sunk the #{@setup.computer_board.cells[@player_shot].ship.name}."
+    else
+      @setup.computer_board.cells[@player_shot].fire_upon
+      "Your shot on #{@player_shot} hit the #{@setup.computer_board.cells[@player_shot].ship.name}."
     end
   end
 end
