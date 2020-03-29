@@ -3,6 +3,8 @@ require './lib/ship'
 
 class Play
 
+  attr_reader :computer_board, :player_board
+
   def computer_ship_placement
     @computer_board = Board.new
     computer_cruiser = Ship.new("Cruiser", 3)
@@ -52,7 +54,3 @@ class Play
   end
 
 end
-
-@play = Play.new
-@play.computer_ship_placement
-@play.player_instructions
