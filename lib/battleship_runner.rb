@@ -9,12 +9,7 @@ start = gets.chomp
 if start == 'p'
   turn = Turn.new
   turn.setup_game
-  print turn.display_both_boards
-  turn.get_player_shot
-  turn.validate_player_shot
-  turn.get_computer_shot
-  p turn.take_player_shot
-  p turn.take_computer_shot
+  p turn.determine_winner
 elsif start == 'q'
   p 'You have quit the game'
 else

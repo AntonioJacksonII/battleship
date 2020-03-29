@@ -107,4 +107,17 @@ class TurnTest < Minitest::Test
     assert_equal true, turn.setup.player_board.cells[turn.computer_shot].fired_upon?
   end
 
+  def test_determine_winner
+    turn = Turn.new
+    turn.setup_game
+    turn.display_both_boards
+    turn.get_player_shot
+    turn.validate_player_shot
+    turn.take_player_shot
+    turn.take_computer_shot
+    turn.determine_winner
+
+    assert_equal true, turn.setup.computer_cruiser.health == 0 && turn.setup.computer_sub.health == 0 || turn.setup.player_cruiser.health == 0 && turn.setup.player_submarine.health == 0
+  end
+
 end
