@@ -1,17 +1,19 @@
 require './lib/board'
 require './lib/ship'
 
-class Play
+class Setup
+
+  attr_reader :computer_board, :player_board
 
   def computer_ship_placement
     @computer_board = Board.new
     computer_cruiser = Ship.new("Cruiser", 3)
     computer_sub = Ship.new("Submarine", 2)
-    place_ship(computer_cruiser)
-    place_ship(computer_sub)
+    place_computer_ship(computer_cruiser)
+    place_computer_ship(computer_sub)
   end
 
-  def place_ship(ship)
+  def place_computer_ship(ship)
     placement = []
     until @computer_board.valid_placement?(ship, placement) do
       placement = @computer_board.cells.keys.sample(ship.length)
@@ -19,7 +21,7 @@ class Play
     @computer_board.place(ship, placement)
   end
 
-  def player_instructions
+  def player_ship_placement
     @player_board = Board.new
     p 'I have laid out my ships on the grid.'
     p 'You now need to lay out your two ships.'
@@ -52,7 +54,3 @@ class Play
   end
 
 end
-
-@play = Play.new
-@play.computer_ship_placement
-@play.player_instructions
