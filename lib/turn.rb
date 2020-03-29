@@ -1,6 +1,6 @@
 class Turn
 
-  attr_reader :setup, :player_shot
+  attr_reader :setup, :player_shot, :computer_shot
 
   def setup_game
     @setup = Setup.new
@@ -33,5 +33,9 @@ class Turn
       print 'Please enter a valid coordinate: '
       @player_shot = gets.chomp
     end
+  end
+
+  def get_computer_shot
+      @computer_shot = @setup.player_board.cells.keys.sample
   end
 end
