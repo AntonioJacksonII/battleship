@@ -9,6 +9,10 @@ p 'Enter p to play. Enter q to quit.'
 start = gets.chomp.split(" ")
 
 if start == 'p'
+<<<<<<< HEAD
+=======
+  Play.new.computer_ship_placement
+>>>>>>> 7a0a5b5cf7a571c95b5ff457e050322c983e73c5
 elsif start == 'q'
   p 'You have quit the game'
 else
