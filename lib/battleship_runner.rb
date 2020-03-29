@@ -6,9 +6,9 @@ p 'Enter p to play. Enter q to quit.'
 start = gets.chomp
 
 if start == 'p'
-  setup = Setup.new
-  setup.computer_ship_placement
-  setup.player_ship_placement
+  turn = Turn.new
+  turn.setup_game
+  print turn.display_computer_board
 elsif start == 'q'
   p 'You have quit the game'
 else
