@@ -57,12 +57,23 @@ class TurnTest < Minitest::Test
   end
 
   def test_get_computer_shot
+    skip
     turn = Turn.new
     turn.setup_game
     turn.get_computer_shot
 
     assert_equal true, turn.setup.player_board.valid_coordinate?(turn.computer_shot)
     assert_equal false, turn.setup.player_board.cells[turn.computer_shot].fired_upon?
+  end
+
+  def test_take_player_shot
+    turn = Turn.new
+    turn.setup_game
+    turn.get_player_shot
+    turn.validate_player_shot
+    turn.take_player_shot
+
+    assert_equal true, turn.setup.computer_board.cells[turn.player_shot].fired_upon?
   end
 
 end

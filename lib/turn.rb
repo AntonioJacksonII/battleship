@@ -41,4 +41,11 @@ class Turn
       @computer_shot = @setup.player_board.cells.keys.sample
     end
   end
+
+  def take_player_shot
+    if @setup.computer_board.cells[@player_shot].ship == nil
+      @setup.computer_board.cells[@player_shot].fire_upon
+      print "Your shot on #{@player_shot} was a miss."
+    end
+  end
 end
