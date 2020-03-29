@@ -28,12 +28,31 @@ class TurnTest < Minitest::Test
   end
 
   def test_display_both_boards
+    skip
     turn = Turn.new
     turn.setup_game
 
     assert_equal (print "=============COMPUTER BOARD=============\n#{turn.display_computer_board}\n==============PLAYER BOARD==============\n#{turn.display_player_board}"), turn.display_both_boards
-
   end
 
+  def test_get_player_shot
+    skip
+    turn = Turn.new
+    turn.setup_game
+
+    assert_nil turn.player_shot
+    #Enter 'A1' when prompted for a shot
+    assert_equal "A1", turn.get_player_shot
+    assert turn.player_shot
+  end
+
+  def test_validate_player_shot
+    turn = Turn.new
+    turn.setup_game
+    turn.get_player_shot
+    turn.validate_player_shot
+
+    assert_equal true, turn.setup.computer_board.valid_coordinate?(turn.player_shot)
+  end
 
 end
