@@ -62,7 +62,7 @@ class TurnTest < Minitest::Test
     turn.get_computer_shot
 
     assert_equal true, turn.setup.player_board.valid_coordinate?(turn.computer_shot)
-
+    assert_equal false, turn.setup.player_board.cells[turn.computer_shot].fired_upon?
   end
 
 end

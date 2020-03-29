@@ -36,6 +36,9 @@ class Turn
   end
 
   def get_computer_shot
+    @computer_shot = @setup.player_board.cells.keys.sample
+    until @setup.player_board.cells[@computer_shot].fired_upon? == false do
       @computer_shot = @setup.player_board.cells.keys.sample
+    end
   end
 end
