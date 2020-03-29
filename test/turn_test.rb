@@ -68,6 +68,7 @@ class TurnTest < Minitest::Test
   end
 
   def test_take_player_shot_miss
+    skip
     turn = Turn.new
     turn.setup_game
     turn.get_player_shot
@@ -77,7 +78,7 @@ class TurnTest < Minitest::Test
     assert_equal true, turn.setup.computer_board.cells[turn.player_shot].fired_upon?
   end
 
-  def test_take_player_shot_hit
+  def test_take_player_shot_hit_and_sunk
     turn = Turn.new
     turn.setup_game
     computer_submarine = Ship.new("Submarine", 2)
@@ -89,6 +90,10 @@ class TurnTest < Minitest::Test
     assert_equal "Your shot on #{turn.player_shot} hit the Submarine.", turn.take_player_shot
     assert_equal true, turn.setup.computer_board.cells[turn.player_shot].fired_upon?
 
+    #Enter "A2" as player shot
+    turn.get_player_shot
+    assert_equal "Your shot on #{turn.player_shot} sunk the Submarine.", turn.take_player_shot
+    assert_equal true, turn.setup.computer_board.cells[turn.player_shot].fired_upon?
   end
 
 end
