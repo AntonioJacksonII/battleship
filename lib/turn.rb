@@ -54,4 +54,18 @@ class Turn
       "Your shot on #{@player_shot} hit the #{@setup.computer_board.cells[@player_shot].ship.name}."
     end
   end
+
+  def take_computer_shot
+    if @setup.player_board.cells[@computer_shot].ship == nil
+      @setup.player_board.cells[@computer_shot].fire_upon
+      "Your shot on #{@computer_shot} was a miss."
+    elsif @setup.player_board.cells[@computer_shot].ship.health == 1
+      @setup.player_board.cells[@computer_shot].fire_upon
+      "Your shot on #{@computer_shot} sunk the #{@setup.player_board.cells[@computer_shot].ship.name}."
+    else
+      @setup.player_board.cells[@computer_shot].fire_upon
+      "Your shot on #{@computer_shot} hit the #{@setup.player_board.cells[@computer_shot].ship.name}."
+    end
+  end
+
 end
