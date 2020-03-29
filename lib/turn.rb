@@ -15,4 +15,11 @@ class Turn
   def display_player_board
     @setup.player_board.render(true)
   end
+
+  def display_both_boards
+    print "=============COMPUTER BOARD============="
+    print display_computer_board
+    print "==============PLAYER BOARD=============="
+    print display_player_board
+  end
 end
