@@ -26,6 +26,11 @@ class Turn
   def get_player_shot
     print "Enter the coordinate for your shot: "
     @player_shot = gets.chomp
+    validate_player_shot
+    until @setup.computer_board.cells[@player_shot].fired_upon? == false
+      print "You already fired on #{@player_shot}. Please enter a coordinate you have not fired on: "
+      @player_shot = gets.chomp
+    end
   end
 
   def validate_player_shot
@@ -54,4 +59,35 @@ class Turn
       "Your shot on #{@player_shot} hit the #{@setup.computer_board.cells[@player_shot].ship.name}."
     end
   end
+
+  def take_computer_shot
+    if @setup.player_board.cells[@computer_shot].ship == nil
+      @setup.player_board.cells[@computer_shot].fire_upon
+      "My shot on #{@computer_shot} was a miss."
+    elsif @setup.player_board.cells[@computer_shot].ship.health == 1
+      @setup.player_board.cells[@computer_shot].fire_upon
+      "My shot on #{@computer_shot} sunk the #{@setup.player_board.cells[@computer_shot].ship.name}."
+    else
+      @setup.player_board.cells[@computer_shot].fire_upon
+      "My shot on #{@computer_shot} hit the #{@setup.player_board.cells[@computer_shot].ship.name}."
+    end
+  end
+
+  def determine_winner
+    until @setup.computer_cruiser.health == 0 && @setup.computer_sub.health == 0 || @setup.player_cruiser.health == 0 && @setup.player_submarine.health == 0 do
+      print display_both_boards
+      get_player_shot
+      validate_player_shot
+      get_computer_shot
+      p take_player_shot
+      p take_computer_shot
+    end
+
+    if @setup.computer_cruiser.health == 0 && @setup.computer_sub.health == 0
+      "You won!"
+    elsif @setup.player_cruiser.health == 0 && @setup.player_submarine.health == 0
+      "I won!"
+    end
+  end
+
 end
