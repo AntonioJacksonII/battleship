@@ -33,28 +33,24 @@ class Cell
   end
 
   def render(hidden=false)
-    if hidden == false
-      if !empty? && (@ship_cell.health == 0)
-        "X"
-      elsif !empty? && (@fired_upon == true)
-        "H"
-      elsif  empty? && (@fired_upon == true)
-        "M"
-      else
-        "."
-      end
+    if hidden == false && !empty? && (@ship_cell.health == 0)
+      "X"
+    elsif hidden == false && !empty? && (@fired_upon == true)
+      "H"
+    elsif hidden == false && empty? && (@fired_upon == true)
+      "M"
+    elsif hidden == false
+      "."
+    elsif hidden == true && !empty? && (@ship_cell.health == 0)
+      "X"
+    elsif hidden == true && !empty? && (@fired_upon == false)
+      "S"
+    elsif hidden == true && !empty? && (@fired_upon == true)
+      "H"
+    elsif hidden == true &&  empty? && (@fired_upon == true)
+      "M"
     elsif hidden == true
-      if !empty? && (@ship_cell.health == 0)
-        "X"
-      elsif !empty? && (@fired_upon == false)
-        "S"
-      elsif !empty? && (@fired_upon == true)
-        "H"
-      elsif  empty? && (@fired_upon == true)
-        "M"
-      else
-        "."
-      end
+      "."
     end
   end
 end
