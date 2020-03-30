@@ -3,14 +3,14 @@ require './lib/ship'
 
 class Setup
 
-  attr_reader :computer_board, :player_board
+  attr_reader :computer_board, :player_board, :computer_cruiser, :computer_sub, :player_cruiser, :player_submarine
 
   def computer_ship_placement
     @computer_board = Board.new
-    computer_cruiser = Ship.new("Cruiser", 3)
-    computer_sub = Ship.new("Submarine", 2)
-    place_computer_ship(computer_cruiser)
-    place_computer_ship(computer_sub)
+    @computer_cruiser = Ship.new("Cruiser", 3)
+    @computer_sub = Ship.new("Submarine", 2)
+    place_computer_ship(@computer_cruiser)
+    place_computer_ship(@computer_sub)
   end
 
   def place_computer_ship(ship)
@@ -36,21 +36,21 @@ class Setup
   end
 
   def place_player_cruiser(coordinates)
-    player_cruiser = Ship.new("Cruiser", 3)
-    until @player_board.valid_placement?(player_cruiser, coordinates) do
+    @player_cruiser = Ship.new("Cruiser", 3)
+    until @player_board.valid_placement?(@player_cruiser, coordinates) do
       p 'Those are invalid coordinates. Please try again: '
       coordinates = gets.chomp.split(" ")
     end
-    @player_board.place(player_cruiser, coordinates)
+    @player_board.place(@player_cruiser, coordinates)
   end
 
   def place_player_submarine(coordinates)
-    player_submarine = Ship.new("Submarine", 2)
-    until @player_board.valid_placement?(player_submarine, coordinates) do
+    @player_submarine = Ship.new("Submarine", 2)
+    until @player_board.valid_placement?(@player_submarine, coordinates) do
       p 'Those are invalid coordinates. Please try again: '
       coordinates = gets.chomp.split(" ")
     end
-    @player_board.place(player_submarine, coordinates)
+    @player_board.place(@player_submarine, coordinates)
   end
 
 end
