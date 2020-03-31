@@ -25,7 +25,7 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    cells.keys.any?(coordinate)
+    coordinate.map { |coordinate| cells.keys.any?(coordinate) }.all?
   end
 
   def valid_placement?(ship, coordinates)
