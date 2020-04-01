@@ -1,5 +1,4 @@
 require './lib/cell'
-require './lib/ship'
 
 class Board
 
@@ -25,10 +24,11 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    coordinate.map { |coordinate| cells.keys.any?(coordinate) }.all?
+    cells.keys.any?(coordinate)
   end
 
   def valid_placement?(ship, coordinates)
+    coordinates.map { |coordinate| cells.keys.any?(coordinate)}.all? &&
     no_ship_overlap(coordinates) &&
     coordinates_match_ship_length?(ship, coordinates) &&
     coordinates_are_consecutive?(coordinates)

@@ -5,6 +5,10 @@ require './lib/cell'
 require './lib/board'
 
 class BoardTest < Minitest::Test
+  def test_require_lib_ship
+    assert_equal true, require './lib/ship'
+  end
+
   def setup
     @board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
