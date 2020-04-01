@@ -7,13 +7,11 @@ require './lib/ship'
 class TurnTest < Minitest::Test
 
   def test_it_exists
-    skip
     turn = Turn.new
     assert_instance_of Turn, turn
   end
 
   def test_display_computer_board
-    skip
     turn = Turn.new
     turn.setup_game
 
@@ -21,7 +19,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_display_player_board
-    skip
     turn = Turn.new
     turn.setup_game
 
@@ -29,7 +26,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_display_both_boards
-    skip
     turn = Turn.new
     turn.setup_game
 
@@ -37,7 +33,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_get_player_shot
-    skip
     turn = Turn.new
     turn.setup_game
 
@@ -49,7 +44,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_validate_player_shot
-    skip
     turn = Turn.new
     turn.setup_game
     turn.get_player_shot
@@ -59,7 +53,6 @@ class TurnTest < Minitest::Test
   end
 
   def test_get_computer_shot
-    skip
     turn = Turn.new
     turn.setup_game
     turn.get_computer_shot
@@ -69,18 +62,18 @@ class TurnTest < Minitest::Test
   end
 
   def test_take_player_shot_miss
-    skip
     turn = Turn.new
     turn.setup_game
     turn.get_player_shot
     turn.validate_player_shot
 
-    assert_equal "Your shot on #{turn.player_shot} was a miss.", turn.take_player_shot
-    assert_equal true, turn.setup.computer_board.cells[turn.player_shot].fired_upon?
+    if turn.setup.computer_board.cells[turn.player_shot].ship == nil
+      assert_equal "Your shot on #{turn.player_shot} was a miss.", turn.take_player_shot
+      assert_equal true, turn.setup.computer_board.cells[turn.player_shot].fired_upon?
+    end
   end
 
   def test_take_player_shot_hit_and_sunk
-    skip
     turn = Turn.new
     turn.setup_game
     computer_submarine = Ship.new("Submarine", 2)
@@ -107,17 +100,22 @@ class TurnTest < Minitest::Test
     assert_equal true, turn.setup.player_board.cells[turn.computer_shot].fired_upon?
   end
 
-  def test_determine_winner
+  def test_determine_winner_player
     turn = Turn.new
     turn.setup_game
-    turn.display_both_boards
-    turn.get_player_shot
-    turn.validate_player_shot
-    turn.take_player_shot
-    turn.take_computer_shot
-    turn.determine_winner
+    3.times {turn.setup.computer_cruiser.hit}
+    2.times {turn.setup.computer_sub.hit}
 
-    assert_equal true, turn.setup.computer_cruiser.health == 0 && turn.setup.computer_sub.health == 0 || turn.setup.player_cruiser.health == 0 && turn.setup.player_submarine.health == 0
+    assert_equal "You won!", turn.determine_winner
+  end
+
+  def test_determine_winner_computer
+    turn = Turn.new
+    turn.setup_game
+    3.times {turn.setup.player_cruiser.hit}
+    2.times {turn.setup.player_submarine.hit}
+
+    assert_equal "I won!", turn.determine_winner
   end
 
 end
