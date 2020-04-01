@@ -37,7 +37,7 @@ class Setup
 
   def place_player_cruiser(coordinates)
     @player_cruiser = Ship.new("Cruiser", 3)
-    until @player_board.valid_coordinate?(coordinates) && @player_board.valid_placement?(@player_cruiser, coordinates) do
+    until @player_board.valid_placement?(@player_cruiser, coordinates) do
       p 'Those are invalid coordinates. Please try again: '
       coordinates = gets.chomp.split(" ")
     end
@@ -46,7 +46,7 @@ class Setup
 
   def place_player_submarine(coordinates)
     @player_submarine = Ship.new("Submarine", 2)
-    until @player_board.valid_coordinate?(coordinates) && @player_board.valid_placement?(@player_submarine, coordinates) do
+    until @player_board.valid_placement?(@player_submarine, coordinates) do
       p 'Those are invalid coordinates. Please try again: '
       coordinates = gets.chomp.split(" ")
     end
