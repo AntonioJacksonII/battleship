@@ -71,6 +71,4 @@ class SetupTest < Minitest::Test
     assert_nil setup.player_board.cells["C2"].ship
     assert_nil setup.player_board.cells["D3"].ship
   end
-
-
 end

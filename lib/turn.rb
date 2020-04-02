@@ -89,5 +89,4 @@ class Turn
       "I won!"
     end
   end
-
 end

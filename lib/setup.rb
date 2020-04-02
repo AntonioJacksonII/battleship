@@ -52,5 +52,4 @@ class Setup
     end
     @player_board.place(@player_submarine, coordinates)
   end
-
 end
