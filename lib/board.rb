@@ -28,11 +28,7 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-<<<<<<< HEAD
-    coordinates.map { |coordinate| cells.keys.any?(coordinate)}.all? &&
-=======
     coordinates.map { |coordinate| cells.keys.any?(coordinate) }.all? &&
->>>>>>> fffcbf91bd44e59823a95299793e0ba013ec3b61
     no_ship_overlap(coordinates) &&
     coordinates_match_ship_length?(ship, coordinates) &&
     coordinates_are_consecutive?(coordinates)
