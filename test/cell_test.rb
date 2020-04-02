@@ -16,6 +16,11 @@ class CellTest < Minitest::Test
       assert_equal "B4", cell.coordinate
   end
 
+  def test_ship_hit
+    cell = Cell.new("B4")
+    assert_equal nil, cell.ship
+  end
+
   def test_empty?
       cell = Cell.new('B4')
       assert_equal true, cell.empty?
@@ -53,6 +58,7 @@ class CellTest < Minitest::Test
 
   def test_render
     cell_1 = Cell.new("B4")
+    cell_2 = Cell.new("C3")
     cruiser = Ship.new("Cruiser", 3)
 
     cell_1.render
@@ -61,6 +67,12 @@ class CellTest < Minitest::Test
     cell_1.fire_upon
     cell_1.render
     assert_equal "M", cell_1.render
+
+    cell_2.render
+    assert_equal ".", cell_2.render
+
+    cell_2.place_ship(cruiser)
+    assert_equal "S", cell_2.render(true)
   end
 
   def test_ship_has_sunk
